@@ -1,2 +1,8 @@
-﻿// For more information see https://aka.ms/fsharp-console-apps
-printfn "Hello from F#"
+﻿open System
+open Gui
+
+[<STAThread>]
+[<EntryPoint>]
+let main _ =
+    createTextAnalyzerApp ()
+    0
