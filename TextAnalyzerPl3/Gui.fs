@@ -57,3 +57,6 @@ let createTextAnalyzerApp () =
     flowLayout.Controls.Add(saveButton)
     flowLayout.Controls.Add(showResultsButton)
     flowLayout.Controls.Add(showTextButton)
+
+
+    Application.Run(form)
