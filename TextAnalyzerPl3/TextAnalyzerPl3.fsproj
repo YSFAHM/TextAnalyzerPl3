@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="Gui.fs" />
     <Compile Include="Analysis.fs" />
+    <Compile Include="Gui.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
