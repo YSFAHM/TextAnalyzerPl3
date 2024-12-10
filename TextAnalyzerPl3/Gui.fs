@@ -1,10 +1,12 @@
 ﻿module Gui
 
+
+open Analysis
 open System
 open System.IO
 open System.Windows.Forms
 open System.Drawing
-open Analysis
+
 
 
 let createStyledButton (text: string) (width: int) (backColor: Color) =
