@@ -92,7 +92,7 @@ let createTextAnalyzerApp () =
     flowLayout.Controls.Add(showTextButton)
 
 
-    analyzeButton.Click.Add(fun  -> 
+    analyzeButton.Click.Add(fun _-> 
         if loadedText <> "" then
             let result = showAnalysisResults loadedText
             MessageBox.Show(result, "Analysis Results", MessageBoxButtons.OK, MessageBoxIcon.Information) |> ignore
@@ -100,20 +100,20 @@ let createTextAnalyzerApp () =
             MessageBox.Show("Please load a file first.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning) |> ignore
     )
 
-    loadButton.Click.Add(fun  -> 
+    loadButton.Click.Add(fun _-> 
         let openFileDialog = new OpenFileDialog(Filter = "Text Files (.txt)|.txt")
         if openFileDialog.ShowDialog() = DialogResult.OK then
             let filePath = openFileDialog.FileName
             loadedText <- File.ReadAllText(filePath)
     )
 
-    clearButton.Click.Add(fun  -> 
+    clearButton.Click.Add(fun _-> 
         loadedText <- ""
         MessageBox.Show("Text cleared.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information) |> ignore
     )
 
 
-    saveButton.Click.Add(fun  -> 
+    saveButton.Click.Add(fun _-> 
         if loadedText <> "" then
             // Save the results to a file (save logic can be implemented here)
             MessageBox.Show("Results saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information) |> ignore
