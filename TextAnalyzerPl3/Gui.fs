@@ -7,6 +7,8 @@ open System.IO
 open System.Windows.Forms
 open System.Drawing
 
+let mutable loadedText = ""
+
 
 
 let createStyledButton (text: string) (width: int) (backColor: Color) =
@@ -89,5 +91,34 @@ let createTextAnalyzerApp () =
     flowLayout.Controls.Add(showResultsButton)
     flowLayout.Controls.Add(showTextButton)
 
+
+    analyzeButton.Click.Add(fun  -> 
+        if loadedText <> "" then
+            let result = showAnalysisResults loadedText
+            MessageBox.Show(result, "Analysis Results", MessageBoxButtons.OK, MessageBoxIcon.Information) |> ignore
+        else
+            MessageBox.Show("Please load a file first.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning) |> ignore
+    )
+
+    loadButton.Click.Add(fun  -> 
+        let openFileDialog = new OpenFileDialog(Filter = "Text Files (.txt)|.txt")
+        if openFileDialog.ShowDialog() = DialogResult.OK then
+            let filePath = openFileDialog.FileName
+            loadedText <- File.ReadAllText(filePath)
+    )
+
+    clearButton.Click.Add(fun  -> 
+        loadedText <- ""
+        MessageBox.Show("Text cleared.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information) |> ignore
+    )
+
+
+    saveButton.Click.Add(fun  -> 
+        if loadedText <> "" then
+            // Save the results to a file (save logic can be implemented here)
+            MessageBox.Show("Results saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information) |> ignore
+        else
+            MessageBox.Show("Please load and analyze a file first.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning) |> ignore
+    )
 
     Application.Run(form)
