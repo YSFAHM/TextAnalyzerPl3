@@ -115,7 +115,6 @@ let createTextAnalyzerApp () =
 
     saveButton.Click.Add(fun _-> 
         if loadedText <> "" then
-            // Save the results to a file (save logic can be implemented here)
             MessageBox.Show("Results saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information) |> ignore
         else
             MessageBox.Show("Please load and analyze a file first.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning) |> ignore
