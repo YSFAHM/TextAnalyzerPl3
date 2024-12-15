@@ -101,7 +101,7 @@ let createTextAnalyzerApp () =
     )
 
     loadButton.Click.Add(fun _-> 
-        let openFileDialog = new OpenFileDialog(Filter = "Text Files (.txt)|.txt")
+        let openFileDialog = new OpenFileDialog(Filter = "Text Files (*.txt)|*.txt")
         if openFileDialog.ShowDialog() = DialogResult.OK then
             let filePath = openFileDialog.FileName
             loadedText <- File.ReadAllText(filePath)
@@ -139,7 +139,7 @@ let createTextAnalyzerApp () =
         let closeButton = createStyledButton "Close" 100 Color.LightGray
         closeButton.Click.Add(fun _ -> analysisWindowForm.Close())
         analysisWindowForm.Controls.Add(closeButton)
-
+        analysisWindowForm.AutoSize <- true
         analysisWindowForm.ShowDialog() |> ignore
     )
 
@@ -162,7 +162,7 @@ let createTextAnalyzerApp () =
         let closeButton = createStyledButton "Close" 100 Color.LightGray
         closeButton.Click.Add(fun _ -> textWindowForm.Close())
         textWindowForm.Controls.Add(closeButton)
-
+        textWindowForm.AutoSize <- true
         textWindowForm.ShowDialog() |> ignore
     )
 
