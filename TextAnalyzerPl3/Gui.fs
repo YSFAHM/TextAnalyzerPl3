@@ -76,12 +76,12 @@ let createTextAnalyzerApp () =
     buttonPanel.Controls.Add(flowLayout)
 
     
-    let analyzeButton = createStyledButton "Analyze" 150 Color.LightGreen
-    let loadButton = createStyledButton "Load File" 150 Color.LightBlue
-    let clearButton = createStyledButton "Clear Text" 150 Color.Orange
-    let saveButton = createStyledButton "Save Results" 150 Color.LightSalmon
-    let showResultsButton = createStyledButton "Show Results" 150 Color.LightCoral
-    let showTextButton = createStyledButton "Show Text" 150 Color.LightYellow
+    let analyzeButton = createStyledButton "Analyze" 150 Color.Gray
+    let loadButton = createStyledButton "Load File" 150 Color.Gray
+    let clearButton = createStyledButton "Clear Text" 150 Color.Gray
+    let saveButton = createStyledButton "Save Results" 150 Color.Gray
+    let showResultsButton = createStyledButton "Show Results" 150 Color.Gray
+    let showTextButton = createStyledButton "Show Text" 150 Color.Gray
 
     
     flowLayout.Controls.Add(analyzeButton)
@@ -140,7 +140,7 @@ let createTextAnalyzerApp () =
         closeButton.Click.Add(fun _ -> analysisWindowForm.Close())
         analysisWindowForm.Controls.Add(closeButton)
         analysisWindowForm.AutoSize <- true
-        analysisWindowForm.ShowDialog() |> ignore
+        analysisWindowForm.Show()
     )
 
 
@@ -163,7 +163,7 @@ let createTextAnalyzerApp () =
         closeButton.Click.Add(fun _ -> textWindowForm.Close())
         textWindowForm.Controls.Add(closeButton)
         textWindowForm.AutoSize <- true
-        textWindowForm.ShowDialog() |> ignore
+        textWindowForm.Show()
     )
 
     Application.Run(form)
