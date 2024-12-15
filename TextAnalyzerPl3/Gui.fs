@@ -115,6 +115,16 @@ let createTextAnalyzerApp () =
 
     saveButton.Click.Add(fun _-> 
         if loadedText <> "" then
+            let analysisResult = showAnalysisResults loadedText
+            if String.IsNullOrWhiteSpace analysisResult then
+                MessageBox.Show("No results to save. Please analyze some text first.", "Save Error", MessageBoxButtons.OK, MessageBoxIcon.Warning) |> ignore
+            else
+                
+                let saveFileDialog = new SaveFileDialog(Filter = "Text Files (.txt)|.txt")
+                if saveFileDialog.ShowDialog() = DialogResult.OK then
+                    let filePath = saveFileDialog.FileName
+                    File.WriteAllText(filePath, analysisResult)
+
             MessageBox.Show("Results saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information) |> ignore
         else
             MessageBox.Show("Please load and analyze a file first.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning) |> ignore
