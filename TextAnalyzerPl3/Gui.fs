@@ -120,4 +120,50 @@ let createTextAnalyzerApp () =
             MessageBox.Show("Please load and analyze a file first.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning) |> ignore
     )
 
+    showResultsButton.Click.Add(fun _ ->
+
+        let analysisWindowForm = new Form(Text = "Analysis Results", Width = 600, Height = 400)
+        
+
+        let resultTextBox = new TextBox(Multiline = true, Dock = DockStyle.Fill, Font = new Font("Arial", 10.0f), ScrollBars = ScrollBars.Vertical)
+        analysisWindowForm.Controls.Add(resultTextBox)
+
+
+        if loadedText <> "" then
+            let analysisResult = showAnalysisResults loadedText
+            resultTextBox.Text <- analysisResult
+        else
+            resultTextBox.Text <- "No file loaded yet."
+
+
+        let closeButton = createStyledButton "Close" 100 Color.LightGray
+        closeButton.Click.Add(fun _ -> analysisWindowForm.Close())
+        analysisWindowForm.Controls.Add(closeButton)
+
+        analysisWindowForm.ShowDialog() |> ignore
+    )
+
+
+    showTextButton.Click.Add(fun _ ->
+
+        let textWindowForm = new Form(Text = "Original Text", Width = 600, Height = 400)
+        
+
+        let textBox = new TextBox(Multiline = true, Dock = DockStyle.Fill, Font = new Font("Arial", 10.0f), ScrollBars = ScrollBars.Vertical)
+        textWindowForm.Controls.Add(textBox)
+
+
+        if loadedText <> "" then
+            textBox.Text <- loadedText
+        else
+            textBox.Text <- "No file loaded yet."
+
+
+        let closeButton = createStyledButton "Close" 100 Color.LightGray
+        closeButton.Click.Add(fun _ -> textWindowForm.Close())
+        textWindowForm.Controls.Add(closeButton)
+
+        textWindowForm.ShowDialog() |> ignore
+    )
+
     Application.Run(form)
